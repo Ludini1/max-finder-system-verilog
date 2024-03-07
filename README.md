@@ -1,1 +1,1 @@
-A System Verilog module for finding the largest value from a set of inputs. It is completely combinational and parameterizable to your needs.
+A System Verilog module for finding the largest value from a set of inputs. It is completely combinational and parameterizable to your needs. max_finder.sv only returns the largest value as an output. max_index_finder.sv returns both the largest value and the index of the largest value as two separate outputs.
