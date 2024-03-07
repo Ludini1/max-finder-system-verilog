@@ -2,9 +2,9 @@ module max_finder #(
     parameter WIDTH = 8,
     parameter NUM_INPUTS = 4
 ) (
-    input logic [WIDTH - 1 : 0] inputs [NUM_INPUTS],
-    output logic [WIDTH - 1 : 0] max_value,
-    output logic [$clog2(NUM_INPUTS) - 1 : 0] max_index
+    input  logic signed [WIDTH - 1 : 0] inputs [NUM_INPUTS],
+    output logic signed [WIDTH - 1 : 0] max_value,
+    output logic        [$clog2(NUM_INPUTS) - 1 : 0] max_index
 );
     localparam NUM_MAX_VALUES   = (NUM_INPUTS >> 1) + (NUM_INPUTS % 2);
     localparam MAX_INDEX_WIDTH  = $clog2(NUM_INPUTS);
@@ -15,8 +15,8 @@ module max_finder #(
             assign max_value = inputs[0];
             assign max_index = 0;
         end else begin
-            logic [WIDTH - 1 : 0]           max_values  [NUM_MAX_VALUES];
-            logic [MAX_INDEX_WIDTH - 1 : 0] max_indices [NUM_MAX_VALUES];
+            logic signed [WIDTH - 1 : 0]           max_values  [NUM_MAX_VALUES];
+            logic        [MAX_INDEX_WIDTH - 1 : 0] max_indices [NUM_MAX_VALUES];
 
             for (i = 0; i < (NUM_INPUTS >> 1); i = i + 1) begin
                 assign max_values[i] = (inputs[2 * i] >= inputs[2 * i + 1]) ? inputs[2 * i] : inputs[2 * i + 1];
